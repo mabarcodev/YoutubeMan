@@ -12,7 +12,9 @@ línea y volver a renderizar.
 
 <!-- VÍDEO DE MUESTRA: se sustituye por el vídeo subido a GitHub -->
 
-![Demo de youtubeman: «Ruta», una app inventada para el ejemplo](ejemplos/demo/muestras/2-demo-16x9.png)
+https://github.com/user-attachments/assets/70dcf060-9fcd-4aab-a8f5-a8236e3a32b9
+
+
 
 ## Qué hace
 
