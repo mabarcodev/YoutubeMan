@@ -13,9 +13,11 @@ means editing a line and rendering again.
 > The studio (docs, tools and agent instructions) is written in Spanish. Any modern AI handles it fine, and it can
 > talk to you in your language.
 
-<!-- SAMPLE VIDEO: replaced by the video uploaded to GitHub -->
 
-![youtubeman demo: «Ruta», a made-up app used as the example](ejemplos/demo/muestras/2-demo-16x9.png)
+
+https://github.com/user-attachments/assets/244f70cf-bef8-45a0-82eb-c74b77cee147
+
+
 
 ## What it does
 
