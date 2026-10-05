@@ -1,0 +1,192 @@
+{
+  "app": "kit/app/index.html",
+  "aviso": "App ficticia de demostración",
+  "datos": {
+    "paradas": 12,
+    "kmEntrada": 32.4,
+    "kmOptimizada": 20.7,
+    "kmAhorro": 11.7,
+    "porcentaje": 36,
+    "textos": {
+      "distanciaEntrada": "32,4 km",
+      "distanciaOptimizada": "20,7 km",
+      "ahorro": "−11,7 km · −36 %"
+    }
+  },
+  "dispositivos": {
+    "escritorio": {
+      "ancho": 1280,
+      "alto": 800,
+      "escala": 2,
+      "entrada": {
+        "imagen": "/kit/capturas/escritorio-entrada.png",
+        "zonas": {
+          "lista": {
+            "x": 0,
+            "y": 64,
+            "w": 360,
+            "h": 736
+          },
+          "pie": {
+            "x": 0,
+            "y": 636,
+            "w": 359,
+            "h": 164
+          },
+          "distancia": {
+            "x": 24,
+            "y": 673,
+            "w": 111.1,
+            "h": 41
+          },
+          "ahorro": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "boton": {
+            "x": 24,
+            "y": 728,
+            "w": 311,
+            "h": 50
+          },
+          "mapa": {
+            "x": 376,
+            "y": 80,
+            "w": 888,
+            "h": 704
+          }
+        }
+      },
+      "optimizada": {
+        "imagen": "/kit/capturas/escritorio-optimizada.png",
+        "zonas": {
+          "lista": {
+            "x": 0,
+            "y": 64,
+            "w": 360,
+            "h": 736
+          },
+          "pie": {
+            "x": 0,
+            "y": 636,
+            "w": 359,
+            "h": 164
+          },
+          "distancia": {
+            "x": 24,
+            "y": 673,
+            "w": 111.1,
+            "h": 41
+          },
+          "ahorro": {
+            "x": 145.1,
+            "y": 680.5,
+            "w": 123.3,
+            "h": 26
+          },
+          "boton": {
+            "x": 24,
+            "y": 728,
+            "w": 311,
+            "h": 50
+          },
+          "mapa": {
+            "x": 376,
+            "y": 80,
+            "w": 888,
+            "h": 704
+          }
+        }
+      }
+    },
+    "movil": {
+      "ancho": 390,
+      "alto": 844,
+      "escala": 3,
+      "entrada": {
+        "imagen": "/kit/capturas/movil-entrada.png",
+        "zonas": {
+          "lista": {
+            "x": 0,
+            "y": 408,
+            "w": 390,
+            "h": 436
+          },
+          "pie": {
+            "x": 0,
+            "y": 684,
+            "w": 390,
+            "h": 160
+          },
+          "distancia": {
+            "x": 20,
+            "y": 719,
+            "w": 111.1,
+            "h": 41
+          },
+          "ahorro": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "boton": {
+            "x": 20,
+            "y": 774,
+            "w": 350,
+            "h": 50
+          },
+          "mapa": {
+            "x": 12,
+            "y": 68,
+            "w": 366,
+            "h": 328
+          }
+        }
+      },
+      "optimizada": {
+        "imagen": "/kit/capturas/movil-optimizada.png",
+        "zonas": {
+          "lista": {
+            "x": 0,
+            "y": 408,
+            "w": 390,
+            "h": 436
+          },
+          "pie": {
+            "x": 0,
+            "y": 684,
+            "w": 390,
+            "h": 160
+          },
+          "distancia": {
+            "x": 20,
+            "y": 719,
+            "w": 111.1,
+            "h": 41
+          },
+          "ahorro": {
+            "x": 141.1,
+            "y": 726.5,
+            "w": 123.3,
+            "h": 26
+          },
+          "boton": {
+            "x": 20,
+            "y": 774,
+            "w": 350,
+            "h": 50
+          },
+          "mapa": {
+            "x": 12,
+            "y": 68,
+            "w": 366,
+            "h": 328
+          }
+        }
+      }
+    }
+  }
+}

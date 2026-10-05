@@ -1,0 +1,10 @@
+node_modules/
+.venv/
+coverage/
+__pycache__/
+smoke/salida/
+.render-tmp/
+**/.render-tmp/
+*.tmp.mp4
+ejemplos/*/salida/
+ejemplos/*/revision/

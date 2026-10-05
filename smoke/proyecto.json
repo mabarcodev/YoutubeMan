@@ -1,0 +1,6 @@
+{
+  "nombre": "smoke",
+  "descripcion": "Proyecto mínimo para la prueba de humo del estudio (npm run smoke).",
+  "formatos": ["16:9"],
+  "tempo": { "bpm": 120, "primerPulso": 0 }
+}

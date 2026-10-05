@@ -1,0 +1,675 @@
+<!doctype html>
+<!--
+  MAQUETA DE DEMOSTRACIÓN · "Ruta" NO EXISTE: es una app ficticia de planificar repartos inventada para el
+  proyecto de ejemplo del estudio (ejemplos/demo). Hace el papel de la "interfaz real" del producto:
+  capturar.mjs la abre con Playwright, pulsa el botón de verdad y guarda capturas en kit/capturas/.
+  Las escenas solo usan esas capturas; nunca redibujan esta interfaz.
+  Los datos (paradas, kilómetros, ahorro) los calcula esta página a partir de las coordenadas de las
+  paradas: son la única fuente de los números que salen en el vídeo.
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ruta · maqueta de demostración (app ficticia)</title>
+    <style>
+      @font-face {
+        font-family: 'Manrope';
+        src: url('../fuentes/manrope/Manrope-500.ttf') format('truetype');
+        font-weight: 500;
+      }
+      @font-face {
+        font-family: 'Manrope';
+        src: url('../fuentes/manrope/Manrope-600.ttf') format('truetype');
+        font-weight: 600;
+      }
+      @font-face {
+        font-family: 'Manrope';
+        src: url('../fuentes/manrope/Manrope-700.ttf') format('truetype');
+        font-weight: 700;
+      }
+      @font-face {
+        font-family: 'Manrope';
+        src: url('../fuentes/manrope/Manrope-800.ttf') format('truetype');
+        font-weight: 800;
+      }
+
+      :root {
+        --fondo: #f3f4f6;
+        --panel: #ffffff;
+        --borde: #e4e6ea;
+        --tinta: #15181d;
+        --suave: #6a717d;
+        --tenue: #9aa1ab;
+        --acento: #ff5b2e;
+        --acento-suave: #ffece5;
+        --acento-oscuro: #c2410c;
+        --mapa: #e9ecef;
+        --manzana: #f7f8f9;
+        --parque: #dcebd6;
+        --rio: #d3e3f1;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+
+      body {
+        font-family: 'Manrope', system-ui, sans-serif;
+        font-weight: 500;
+        color: var(--tinta);
+        background: var(--fondo);
+        display: grid;
+        grid-template-rows: 64px minmax(0, 1fr);
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ---------- Barra superior ---------- */
+      .barra {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 0 24px;
+        background: var(--panel);
+        border-bottom: 1px solid var(--borde);
+      }
+      .logo {
+        font-weight: 800;
+        font-size: 24px;
+        letter-spacing: -0.03em;
+        display: flex;
+        align-items: baseline;
+      }
+      .logo i {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-left: 2px;
+        border-radius: 50%;
+        background: var(--acento);
+      }
+      .separador {
+        width: 1px;
+        height: 28px;
+        background: var(--borde);
+      }
+      .titulo strong {
+        display: block;
+        font-weight: 700;
+        font-size: 15px;
+      }
+      .titulo span {
+        font-size: 13px;
+        color: var(--suave);
+      }
+      .demo {
+        margin-left: auto;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--suave);
+        border: 1px dashed var(--tenue);
+        border-radius: 999px;
+        padding: 5px 12px;
+      }
+
+      /* ---------- Cuerpo ---------- */
+      .cuerpo {
+        display: grid;
+        grid-template-columns: 360px minmax(0, 1fr);
+        min-height: 0;
+      }
+      .panel {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        background: var(--panel);
+        border-right: 1px solid var(--borde);
+      }
+      .panel-cabecera {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 24px 12px;
+      }
+      .panel-cabecera h2 {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 800;
+      }
+      .contador {
+        font-size: 12px;
+        font-weight: 700;
+        background: var(--fondo);
+        border-radius: 999px;
+        padding: 3px 9px;
+      }
+      .orden {
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--suave);
+      }
+      ol {
+        list-style: none;
+        margin: 0;
+        padding: 0 12px;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 42px;
+        padding: 0 12px;
+      }
+      li + li {
+        border-top: 1px solid #f0f1f3;
+      }
+      li.mas {
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--suave);
+      }
+      .num {
+        flex: none;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        font-weight: 800;
+        background: var(--panel);
+        border: 2px solid var(--tinta);
+      }
+      body[data-estado='optimizada'] .num {
+        background: var(--acento);
+        border-color: var(--acento);
+        color: #fff;
+      }
+      .parada {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .parada strong {
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .parada span {
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--suave);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .pie {
+        padding: 16px 24px 22px;
+        border-top: 1px solid var(--borde);
+      }
+      .pie-etiqueta {
+        font-size: 13px;
+        color: var(--suave);
+      }
+      .pie-fila {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 2px 0 14px;
+      }
+      .distancia {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+      }
+      .ahorro {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--acento-oscuro);
+        background: var(--acento-suave);
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-variant-numeric: tabular-nums;
+      }
+      body[data-estado='entrada'] .ahorro {
+        display: none;
+      }
+      button {
+        width: 100%;
+        height: 50px;
+        border: 0;
+        border-radius: 12px;
+        font: inherit;
+        font-size: 15px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        color: #fff;
+        background: var(--acento);
+      }
+      button svg {
+        width: 18px;
+        height: 18px;
+      }
+      body[data-estado='optimizada'] button {
+        color: var(--acento-oscuro);
+        background: var(--acento-suave);
+        cursor: default;
+      }
+
+      /* ---------- Mapa ---------- */
+      .zona-mapa {
+        padding: 16px;
+        min-height: 0;
+      }
+      .mapa {
+        position: relative;
+        height: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--mapa);
+        border: 1px solid var(--borde);
+      }
+      .mapa svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .leyenda {
+        position: absolute;
+        left: 14px;
+        top: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        background: var(--panel);
+        border-radius: 999px;
+        padding: 7px 14px 7px 10px;
+        box-shadow: 0 1px 2px rgba(20, 23, 28, 0.08);
+      }
+      .leyenda i {
+        width: 22px;
+        height: 0;
+        border-top: 3px dashed var(--suave);
+      }
+      body[data-estado='optimizada'] .leyenda i {
+        border-top: 4px solid var(--acento);
+      }
+      .escala {
+        position: absolute;
+        right: 14px;
+        bottom: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--suave);
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 6px;
+        padding: 3px 8px;
+      }
+
+      /* ---------- Móvil: mapa arriba y hoja de paradas debajo ---------- */
+      @media (max-width: 600px) {
+        body {
+          grid-template-rows: 56px minmax(0, 1fr);
+        }
+        .barra {
+          padding: 0 16px;
+          gap: 12px;
+        }
+        .separador,
+        .titulo span {
+          display: none;
+        }
+        .cuerpo {
+          grid-template-columns: 1fr;
+          grid-template-rows: 340px minmax(0, 1fr);
+        }
+        .zona-mapa {
+          grid-row: 1;
+          padding: 12px 12px 0;
+        }
+        .panel {
+          grid-row: 2;
+          border-right: 0;
+          margin-top: 12px;
+          border-radius: 20px 20px 0 0;
+          box-shadow: 0 -1px 0 var(--borde);
+        }
+        .panel-cabecera {
+          padding: 16px 20px 8px;
+        }
+        ol {
+          padding: 0 8px;
+        }
+        .pie {
+          padding: 14px 20px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body data-estado="entrada">
+    <header class="barra">
+      <div class="logo">ruta<i></i></div>
+      <div class="separador"></div>
+      <div class="titulo">
+        <strong>Reparto de hoy</strong>
+        <span>Furgoneta 1 · sale y vuelve al almacén</span>
+      </div>
+      <div class="demo" title="App ficticia: maqueta de demostración">Demo</div>
+    </header>
+
+    <main class="cuerpo">
+      <section class="panel" data-captura="lista">
+        <div class="panel-cabecera">
+          <h2>Paradas</h2>
+          <span class="contador" data-dato="paradas"></span>
+          <span class="orden" data-dato="orden"></span>
+        </div>
+        <ol id="lista"></ol>
+        <div class="pie" data-captura="pie">
+          <div class="pie-etiqueta">Distancia total</div>
+          <div class="pie-fila">
+            <span class="distancia" data-dato="distancia" data-captura="distancia"></span>
+            <span class="ahorro" data-dato="ahorro" data-captura="ahorro"></span>
+          </div>
+          <button id="optimizar" data-captura="boton" type="button"></button>
+        </div>
+      </section>
+
+      <section class="zona-mapa">
+        <div class="mapa" data-captura="mapa">
+          <svg id="mapa" aria-label="Mapa del reparto"></svg>
+          <div class="leyenda"><i></i><span data-dato="leyenda"></span></div>
+          <div class="escala">Manzana ≈ 450 m</div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module">
+      // Ciudad de cuadrícula: cada manzana mide 450 m y las calles van en ángulo recto,
+      // así que la distancia entre dos puntos es la de Manhattan (horizontal + vertical).
+      const KM_POR_MANZANA = 0.45;
+      const PASO = 80; // unidades del SVG entre calles
+      const ORIGEN = 40;
+      const ALMACEN = { nombre: 'Almacén', c: 0, f: 7 };
+      // Orden de entrada: como llegaron los pedidos. Nombres genéricos de una ciudad inventada.
+      const PARADAS = [
+        { nombre: 'Farmacia', calle: 'Calle del Olmo, 4', c: 2, f: 2 },
+        { nombre: 'Ferretería', calle: 'Calle del Pino, 18', c: 1, f: 4 },
+        { nombre: 'Cafetería', calle: 'Avenida del Roble, 7', c: 9, f: 5 },
+        { nombre: 'Quiosco', calle: 'Plaza del Sauce, 1', c: 6, f: 1 },
+        { nombre: 'Panadería', calle: 'Calle del Álamo, 22', c: 9, f: 1 },
+        { nombre: 'Bodega', calle: 'Calle del Cedro, 9', c: 11, f: 2 },
+        { nombre: 'Óptica', calle: 'Calle del Arce, 31', c: 8, f: 3 },
+        { nombre: 'Librería', calle: 'Calle del Fresno, 2', c: 4, f: 0 },
+        { nombre: 'Floristería', calle: 'Calle del Haya, 15', c: 10, f: 6 },
+        { nombre: 'Frutería', calle: 'Calle del Tilo, 6', c: 7, f: 7 },
+        { nombre: 'Mercería', calle: 'Calle del Abeto, 11', c: 5, f: 4 },
+        { nombre: 'Papelería', calle: 'Calle del Laurel, 27', c: 3, f: 6 },
+      ];
+
+      const pos = (p) => [ORIGEN + p.c * PASO, ORIGEN + p.f * PASO];
+      const manzanas = (a, b) => Math.abs(a.c - b.c) + Math.abs(a.f - b.f);
+      const recorrido = (orden) => {
+        let total = 0;
+        let previa = ALMACEN;
+        for (const p of orden) {
+          total += manzanas(previa, p);
+          previa = p;
+        }
+        return total + manzanas(previa, ALMACEN);
+      };
+
+      // Optimizador: vecino más cercano y luego 2-opt hasta que no mejore. Determinista.
+      function optimizar(paradas) {
+        const libres = [...paradas];
+        const orden = [];
+        let actual = ALMACEN;
+        while (libres.length) {
+          let mejor = 0;
+          for (let i = 1; i < libres.length; i++) {
+            if (manzanas(actual, libres[i]) < manzanas(actual, libres[mejor])) mejor = i;
+          }
+          actual = libres.splice(mejor, 1)[0];
+          orden.push(actual);
+        }
+        let ruta = orden;
+        for (let mejora = true; mejora;) {
+          mejora = false;
+          for (let i = 0; i < ruta.length - 1; i++) {
+            for (let j = i + 1; j < ruta.length; j++) {
+              const otra = [...ruta.slice(0, i), ...ruta.slice(i, j + 1).reverse(), ...ruta.slice(j + 1)];
+              if (recorrido(otra) < recorrido(ruta)) {
+                ruta = otra;
+                mejora = true;
+              }
+            }
+          }
+        }
+        return ruta;
+      }
+
+      const km = new Intl.NumberFormat('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      const fmtKm = (manz) => `${km.format(manz * KM_POR_MANZANA)} km`;
+      const ns = 'http://www.w3.org/2000/svg';
+      const svg = document.getElementById('mapa');
+      const $ = (sel) => document.querySelector(sel);
+
+      function el(tag, attrs, padre) {
+        const e = document.createElementNS(ns, tag);
+        for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+        padre.appendChild(e);
+        return e;
+      }
+
+      // Calles hasta más allá del borde: con preserveAspectRatio="meet" se ve fuera del viewBox.
+      function dibujarCiudad() {
+        svg.setAttribute('viewBox', '0 0 960 640');
+        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        const g = el('g', {}, svg);
+        el('rect', { x: -2000, y: -2000, width: 5000, height: 5000, fill: 'var(--mapa)' }, g);
+        for (let c = -12; c < 24; c++) {
+          for (let f = -10; f < 18; f++) {
+            const x = ORIGEN + c * PASO + 9;
+            const y = ORIGEN + f * PASO + 9;
+            const enParque = c >= 4 && c <= 5 && f >= 1 && f <= 2;
+            el(
+              'rect',
+              { x, y, width: PASO - 18, height: PASO - 18, rx: 6, fill: enParque ? 'var(--parque)' : 'var(--manzana)' },
+              g,
+            );
+          }
+        }
+        // Un río en diagonal da algo de geografía sin tapar las calles del recorrido.
+        el(
+          'path',
+          {
+            d: 'M -400 690 C 120 610, 420 700, 720 640 S 1180 560, 1500 610',
+            stroke: 'var(--rio)',
+            'stroke-width': 26,
+            fill: 'none',
+          },
+          g,
+        );
+        return g;
+      }
+
+      // Cruces estrictos entre un tramo horizontal y uno vertical (tocarse en una esquina no cuenta).
+      function cruces(nuevos, previos) {
+        let n = 0;
+        for (const a of nuevos) {
+          for (const b of previos) {
+            const [h, v] = a.y1 === a.y2 ? [a, b] : [b, a];
+            if (h.y1 !== h.y2 || v.x1 !== v.x2) continue;
+            const dentroX = v.x1 > Math.min(h.x1, h.x2) && v.x1 < Math.max(h.x1, h.x2);
+            const dentroY = h.y1 > Math.min(v.y1, v.y2) && h.y1 < Math.max(v.y1, v.y2);
+            if (dentroX && dentroY) n++;
+          }
+        }
+        return n;
+      }
+
+      // Cada tramo va por las calles en forma de L. De las dos L posibles se elige la que menos
+      // se cruza con lo ya dibujado, como haría un navegador al proponer el camino.
+      function trazado(orden) {
+        const puntos = [ALMACEN, ...orden, ALMACEN].map(pos);
+        const segmentos = [];
+        let d = `M ${puntos[0][0]} ${puntos[0][1]}`;
+        for (let i = 1; i < puntos.length; i++) {
+          const [x1, y1] = puntos[i - 1];
+          const [x2, y2] = puntos[i];
+          const opciones = [
+            [
+              { x1, y1, x2, y2: y1 },
+              { x1: x2, y1, x2, y2 },
+            ],
+            [
+              { x1, y1, x2: x1, y2 },
+              { x1, y1: y2, x2, y2 },
+            ],
+          ].map((segs) => segs.filter((s) => s.x1 !== s.x2 || s.y1 !== s.y2));
+          const elegida = cruces(opciones[1], segmentos) < cruces(opciones[0], segmentos) ? opciones[1] : opciones[0];
+          for (const s of elegida) d += ` L ${s.x2} ${s.y2}`;
+          segmentos.push(...elegida);
+        }
+        return d;
+      }
+
+      function dibujarRuta(orden, optimizada) {
+        svg.querySelector('#ruta')?.remove();
+        const g = el('g', { id: 'ruta' }, svg);
+        // Marcadores siempre del mismo tamaño en pantalla, como en un mapa real.
+        const k = 960 / Math.max(1, svg.getBoundingClientRect().width);
+        const escala = Math.max(1, Math.min(2.6, k));
+        const [x0, y0] = pos(ALMACEN);
+        const d = trazado(orden);
+        el(
+          'path',
+          {
+            d,
+            fill: 'none',
+            stroke: optimizada ? 'var(--acento)' : '#59606b',
+            'stroke-width': (optimizada ? 5 : 3) * escala,
+            'stroke-dasharray': optimizada ? 'none' : `${8 * escala} ${7 * escala}`,
+            'stroke-linejoin': 'round',
+            'stroke-linecap': 'round',
+          },
+          g,
+        );
+        const r = 13 * escala;
+        el('rect', { x: x0 - r, y: y0 - r, width: 2 * r, height: 2 * r, rx: 5 * escala, fill: 'var(--tinta)' }, g);
+        el(
+          'text',
+          {
+            x: x0,
+            y: y0 + 4.5 * escala,
+            'text-anchor': 'middle',
+            'font-size': 13 * escala,
+            'font-weight': 800,
+            fill: '#fff',
+          },
+          g,
+        ).textContent = 'A';
+        orden.forEach((p, i) => {
+          const [x, y] = pos(p);
+          el(
+            'circle',
+            {
+              cx: x,
+              cy: y,
+              r,
+              fill: optimizada ? 'var(--acento)' : '#fff',
+              stroke: optimizada ? '#fff' : 'var(--tinta)',
+              'stroke-width': 2.5 * escala,
+            },
+            g,
+          );
+          el(
+            'text',
+            {
+              x,
+              y: y + 4.5 * escala,
+              'text-anchor': 'middle',
+              'font-size': 13 * escala,
+              'font-weight': 800,
+              fill: optimizada ? '#fff' : 'var(--tinta)',
+            },
+            g,
+          ).textContent = String(i + 1);
+        });
+      }
+
+      // La lista enseña las filas que caben enteras y resume el resto: una fila cortada parece un fallo.
+      function pintarLista(orden) {
+        const lista = $('#lista');
+        const fila = (p, i) =>
+          `<li><span class="num">${i + 1}</span><span class="parada"><strong>${p.nombre}</strong><span>${p.calle}</span></span></li>`;
+        for (let visibles = orden.length; visibles >= 1; visibles--) {
+          const resto = orden.length - visibles;
+          lista.innerHTML =
+            orden.slice(0, visibles).map(fila).join('') + (resto ? `<li class="mas">y ${resto} paradas más</li>` : '');
+          if (lista.scrollHeight <= lista.clientHeight + 1) return;
+        }
+      }
+
+      function pintar(estado) {
+        const optimizada = estado === 'optimizada';
+        const orden = optimizada ? optimizar(PARADAS) : PARADAS;
+        document.body.dataset.estado = estado;
+        $('[data-dato="paradas"]').textContent = String(PARADAS.length);
+        $('[data-dato="orden"]').textContent = optimizada ? 'Orden optimizado' : 'Orden de entrada';
+        $('[data-dato="leyenda"]').textContent = optimizada ? 'Ruta optimizada' : 'Ruta en orden de entrada';
+        $('[data-dato="distancia"]').textContent = fmtKm(recorrido(orden));
+        // El ahorro se calcula en manzanas (enteros) para que los tres números cuadren al redondear.
+        const antes = recorrido(PARADAS);
+        const mejor = recorrido(optimizar(PARADAS));
+        const pct = Math.round(((antes - mejor) / antes) * 100);
+        $('[data-dato="ahorro"]').textContent = `−${fmtKm(antes - mejor)} · −${pct} %`;
+        pintarLista(orden);
+        const icono = optimizada
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="6" r="2.4"/><path d="M8.4 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.6"/></svg>';
+        $('#optimizar').innerHTML = `${icono}<span>${optimizada ? 'Ruta optimizada' : 'Optimizar ruta'}</span>`;
+        dibujarRuta(orden, optimizada);
+        // Datos crudos para capturar.mjs: los mismos números que se ven en pantalla.
+        window.__ruta = {
+          paradas: PARADAS.length,
+          kmEntrada: Number((antes * KM_POR_MANZANA).toFixed(2)),
+          kmOptimizada: Number((mejor * KM_POR_MANZANA).toFixed(2)),
+          kmAhorro: Number(((antes - mejor) * KM_POR_MANZANA).toFixed(2)),
+          porcentaje: pct,
+          estado,
+        };
+      }
+
+      dibujarCiudad();
+      pintar(new URLSearchParams(location.search).get('estado') === 'optimizada' ? 'optimizada' : 'entrada');
+      $('#optimizar').addEventListener('click', () => pintar('optimizada'));
+      addEventListener('resize', () => pintar(document.body.dataset.estado));
+      await document.fonts.ready;
+      document.documentElement.dataset.listo = '1';
+    </script>
+  </body>
+</html>

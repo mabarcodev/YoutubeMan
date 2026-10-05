@@ -1,0 +1,9 @@
+node_modules
+.venv
+coverage
+package-lock.json
+**/salida
+**/revision
+**/.render-tmp
+# Las plantillas llevan marcadores __NOMBRE__ que Prettier convertiría en negrita de Markdown.
+templates/proyecto/*.md

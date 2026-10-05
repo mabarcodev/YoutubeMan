@@ -1,0 +1,7 @@
+# Entorno de Python del estudio (.venv): mide el ritmo de la música con librosa (tools/beats.py).
+# Versiones fijadas para que todos los estudios midan igual. Lo instala `npm run preparar`.
+librosa==1.0.0
+soundfile==0.14.0
+numpy==2.5.3
+scipy==1.18.1
+numba==0.68.0

@@ -1,0 +1,11 @@
+{
+  "nombre": "__NOMBRE__",
+  "repo": "__REPO__",
+  "url": "__URL__",
+  "creado": "__FECHA__",
+  "idioma": "es",
+  "formatos": ["16:9", "9:16"],
+  "fps": 60,
+  "tempo": { "bpm": 120, "primerPulso": 0 },
+  "musica": null
+}

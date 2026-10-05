@@ -1,0 +1,35 @@
+{
+  "name": "youtubeman-estudio",
+  "version": "0.2.0",
+  "private": true,
+  "description": "youtubeman: vídeos de lanzamiento, demos y publicaciones hechos con código (motor seek(t), Playwright y ffmpeg), 100 % en local.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mabarcodev/YoutubeMan.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "preparar": "node tools/preparar.mjs",
+    "doctor": "node tools/doctor.mjs",
+    "test": "node --test \"tests/unit/**/*.test.mjs\"",
+    "test:integracion": "node --test --test-concurrency=1 \"tests/integracion/**/*.test.mjs\"",
+    "test:todo": "npm test && npm run test:integracion",
+    "coverage": "node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-include=\"engine/**\" --test-coverage-include=\"tools/**\" \"tests/**/*.test.mjs\"",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "smoke": "node tools/smoke.mjs",
+    "instalar-agentes": "node tools/instalar-agentes.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "globals": "^17.13.0",
+    "playwright": "^1.63.0",
+    "prettier": "^3.9.9"
+  }
+}

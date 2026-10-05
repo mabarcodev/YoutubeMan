@@ -1,0 +1,12 @@
+{
+  "nombre": "Ruta (demo)",
+  "descripcion": "Proyecto de ejemplo del estudio. Ruta es una app FICTICIA de planificar repartos: su interfaz es la maqueta kit/app/index.html.",
+  "repo": null,
+  "url": "kit/app/index.html",
+  "creado": "2026-10-02",
+  "idioma": "es",
+  "formatos": ["16:9", "9:16", "1:1", "4:5"],
+  "fps": 60,
+  "tempo": { "bpm": 120, "primerPulso": 0 },
+  "musica": null
+}
