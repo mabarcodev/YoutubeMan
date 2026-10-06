@@ -28,15 +28,15 @@ import {
   videosDe,
 } from '../../tools/referencia.mjs';
 
-const VID = 'https://video.twimg.com/amplify_video/2104617675125096449';
+const VID = 'https://video.twimg.com/amplify_video/1234567890123456000';
 
-/** Extracto de la respuesta real de api.fxtwitter.com/status/2104618175803609305 (tweet.media). */
+/** Extracto de una respuesta real de api.fxtwitter.com (tweet.media), con los ids y el usuario inventados. */
 const MEDIA_REAL = {
   all: [
     {
-      id: '2104617675125096449',
+      id: '1234567890123456000',
       url: `${VID}/vid/avc1/1920x1080/wSfliKmtAnKlJgGs.mp4?tag=29`,
-      thumbnail_url: 'https://pbs.twimg.com/amplify_video_thumb/2104617675125096449/img/A0FMnJHSH2lb-61q.jpg',
+      thumbnail_url: 'https://pbs.twimg.com/amplify_video_thumb/1234567890123456000/img/miniatura.jpg',
       duration: 15,
       width: 1920,
       height: 1080,
@@ -116,18 +116,18 @@ describe('leerOpciones', () => {
 
 describe('idTweet', () => {
   test('enlaces de post de x.com y twitter.com', () => {
-    const esperado = { usuario: 'uxmiles', id: '2104618175803609305' };
+    const esperado = { usuario: 'ejemplo', id: '1234567890123456789' };
     for (const url of [
-      'https://x.com/uxmiles/status/2104618175803609305',
-      'https://twitter.com/uxmiles/status/2104618175803609305',
-      'https://www.x.com/uxmiles/status/2104618175803609305',
-      'https://mobile.twitter.com/uxmiles/status/2104618175803609305',
-      'https://X.COM/uxmiles/status/2104618175803609305',
-      'x.com/uxmiles/status/2104618175803609305',
-      'https://x.com/uxmiles/status/2104618175803609305?s=46&t=abc',
-      'https://x.com/uxmiles/status/2104618175803609305/video/1',
-      'https://fxtwitter.com/uxmiles/status/2104618175803609305',
-      'https://vxtwitter.com/uxmiles/statuses/2104618175803609305',
+      'https://x.com/ejemplo/status/1234567890123456789',
+      'https://twitter.com/ejemplo/status/1234567890123456789',
+      'https://www.x.com/ejemplo/status/1234567890123456789',
+      'https://mobile.twitter.com/ejemplo/status/1234567890123456789',
+      'https://X.COM/ejemplo/status/1234567890123456789',
+      'x.com/ejemplo/status/1234567890123456789',
+      'https://x.com/ejemplo/status/1234567890123456789?s=46&t=abc',
+      'https://x.com/ejemplo/status/1234567890123456789/video/1',
+      'https://fxtwitter.com/ejemplo/status/1234567890123456789',
+      'https://vxtwitter.com/ejemplo/statuses/1234567890123456789',
     ]) {
       assert.deepEqual(idTweet(url), esperado, url);
     }
@@ -142,12 +142,12 @@ describe('idTweet', () => {
 
   test('lo que no es un post de X da null', () => {
     for (const url of [
-      'https://x.com/uxmiles',
+      'https://x.com/ejemplo',
       'https://x.com/home',
-      'https://x.com/uxmiles/status/abc',
-      'https://example.com/uxmiles/status/123',
-      'https://x.com.evil.com/uxmiles/status/123',
-      'ftp://x.com/uxmiles/status/123',
+      'https://x.com/ejemplo/status/abc',
+      'https://example.com/ejemplo/status/123',
+      'https://x.com.evil.com/ejemplo/status/123',
+      'ftp://x.com/ejemplo/status/123',
       'https://youtube.com/watch?v=abc',
       'D:\\videos\\clip.mp4',
       '',
@@ -170,7 +170,7 @@ describe('esURLVideoDirecto', () => {
     assert.equal(esURLVideoDirecto('https://example.com/video'), false);
     assert.equal(esURLVideoDirecto(`${VID}/pl/glm2_WlBkdJDDNxZ.m3u8?tag=29`), false);
     assert.equal(esURLVideoDirecto('https://example.com/mp4/pagina.html'), false);
-    assert.equal(esURLVideoDirecto('https://x.com/uxmiles/status/2104618175803609305'), false);
+    assert.equal(esURLVideoDirecto('https://x.com/ejemplo/status/1234567890123456789'), false);
     assert.equal(esURLVideoDirecto('D:\\videos\\clip.mp4'), false);
     assert.equal(esURLVideoDirecto('file:///D:/clip.mp4'), false);
     assert.equal(esURLVideoDirecto('no es una url'), false);
@@ -182,10 +182,10 @@ describe('clasificarEntrada', () => {
   const siempre = () => true;
 
   test('post de X, vídeo directo y otras URL', () => {
-    assert.deepEqual(clasificarEntrada('https://x.com/uxmiles/status/2104618175803609305'), {
+    assert.deepEqual(clasificarEntrada('https://x.com/ejemplo/status/1234567890123456789'), {
       tipo: 'tweet',
-      usuario: 'uxmiles',
-      id: '2104618175803609305',
+      usuario: 'ejemplo',
+      id: '1234567890123456789',
     });
     assert.deepEqual(clasificarEntrada('https://cdn.example.com/a.mp4'), {
       tipo: 'url',
@@ -464,7 +464,7 @@ describe('resumenPlanos', () => {
 
 describe('textos', () => {
   test('el siguiente paso pide estilo.md con todo lo que hay que mirar y prohíbe copiar el contenido', () => {
-    const carpeta = path.resolve('kit', 'referencias', 'uxmiles');
+    const carpeta = path.resolve('kit', 'referencias', 'ejemplo');
     const texto = siguientePaso(carpeta);
     assert.ok(texto.includes(path.join(carpeta, 'estilo.md')));
     for (const clave of [
@@ -490,7 +490,7 @@ describe('textos', () => {
       w: 1920,
       h: 1080,
       fps: 29.97,
-      autor: '@uxmiles',
+      autor: '@ejemplo',
       n: 30,
       cada: 0.5,
       fotogramas: { w: 960, h: 540 },
@@ -504,7 +504,7 @@ describe('textos', () => {
     };
     const texto = resumenReferencia(r);
     assert.match(texto, /^✅ C:\\ref/);
-    assert.match(texto, /video\.mp4 · 15\.0 s · 1920x1080 · 29\.97 fps · de @uxmiles/);
+    assert.match(texto, /video\.mp4 · 15\.0 s · 1920x1080 · 29\.97 fps · de @ejemplo/);
     assert.match(texto, /fotogramas\/ · 30 \(uno cada 0\.5 s, 960x540 px\)/);
     assert.match(texto, /contacto\.png · 30 miniaturas$/m);
     assert.match(texto, /paleta aprox\.: #0b0b0c 62 % · #ffffff <1 %/);

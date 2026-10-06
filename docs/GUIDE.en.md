@@ -62,6 +62,7 @@ transitions, how text comes in), **never** its content, logos or characters.
 **How to give them:**
 
 - A link to an X post (`https://x.com/<user>/status/<id>`), a direct URL to an `.mp4`, or a video file.
+- YouTube, Instagram, TikTok and other sites are not downloaded automatically: download the video and pass the file.
 - Screenshots or images, if there is no video.
 - Paste them in your request or when it asks about the style.
 

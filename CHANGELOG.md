@@ -2,6 +2,15 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
+## [Sin publicar]
+
+### Cambiado
+
+- Los tests de `referencia` usan un usuario y unos ids de X inventados en vez de los de un post real.
+- El traspaso ya no nombra el proyecto con el que se probó el flujo completo.
+- La guía (es/en) aclara que los enlaces de YouTube, Instagram o TikTok no se descargan solos: hay que pasar el
+  archivo.
+
 ## [0.2.0] · 2026-10-05
 
 Primera versión pública.

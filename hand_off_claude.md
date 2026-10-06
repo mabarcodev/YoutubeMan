@@ -11,14 +11,14 @@ vídeos: `REGLAS.md`. Referencia del motor: `docs/CONTRATO-ESCENA.md`. Uso: `doc
 
 ## Estado
 
-| Pieza                                                                    | Estado                                             |
-| ------------------------------------------------------------------------ | -------------------------------------------------- |
-| Motor (`engine/`), render, revisión, prueba de humo                      | ✅ hecho y testeado                                |
-| Herramientas de `tools/` (incluidas `preparar` e `instalar-agentes`)     | ✅ hechas y testeadas                              |
-| Skill y subagentes (`claude/`), con rutas por marcadores                 | ✅ se instalan con `npm run instalar-agentes`      |
-| Ejemplo `ejemplos/demo` («Ruta», app inventada) en 16:9, 9:16, 1:1 y 4:5 | ✅ base que siguen los agentes                     |
-| Flujo completo de `/youtubeman` en un proyecto real                      | ✅ probado: demo de un TPV de escritorio (v1 → v4) |
-| Documentación pública (README es/en, GUIA es/en, LICENSE MIT)            | ✅                                                 |
+| Pieza                                                                    | Estado                                              |
+| ------------------------------------------------------------------------ | --------------------------------------------------- |
+| Motor (`engine/`), render, revisión, prueba de humo                      | ✅ hecho y testeado                                 |
+| Herramientas de `tools/` (incluidas `preparar` e `instalar-agentes`)     | ✅ hechas y testeadas                               |
+| Skill y subagentes (`claude/`), con rutas por marcadores                 | ✅ se instalan con `npm run instalar-agentes`       |
+| Ejemplo `ejemplos/demo` («Ruta», app inventada) en 16:9, 9:16, 1:1 y 4:5 | ✅ base que siguen los agentes                      |
+| Flujo completo de `/youtubeman` en un proyecto real                      | ✅ probado: demo de una app de escritorio (v1 → v4) |
+| Documentación pública (README es/en, GUIA es/en, LICENSE MIT)            | ✅                                                  |
 
 ## Lo aprendido en el primer proyecto real
 

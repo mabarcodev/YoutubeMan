@@ -62,6 +62,7 @@ transiciones, cómo entra el texto), **nunca** su contenido, sus logos ni sus pe
 **Cómo dárselas:**
 
 - Un enlace a un post de X (`https://x.com/<usuario>/status/<id>`), una URL directa a un `.mp4` o un archivo de vídeo.
+- De YouTube, Instagram, TikTok u otras webs no se descarga solo: baja el vídeo tú y pasa el archivo.
 - Capturas o imágenes, si no hay vídeo.
 - Pégalas en tu petición o cuando te pregunte por el estilo.
 

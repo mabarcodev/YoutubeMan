@@ -14,8 +14,6 @@ línea y volver a renderizar.
 
 https://github.com/user-attachments/assets/70dcf060-9fcd-4aab-a8f5-a8236e3a32b9
 
-
-
 ## Qué hace
 
 - **Kit real:** lee el repo de tu producto (sin tocarlo), saca logo, colores y tipografías, y hace capturas reales.
