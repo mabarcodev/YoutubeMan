@@ -5,15 +5,18 @@
 ## 1. Folders
 
 ```
-Videos/
-├── _estudio/        the studio (this repo): you don't touch it to make videos
-├── MyProduct/       a project: its material (kit/), its scenes and its videos (salida/)
-└── AnotherProduct/
+youtubeman/              the studio (this repo): open your AI here
+├── .claude/  AGENTS.md  the skill and the agents (already in place)
+└── videos/
+    ├── MyProduct/       one video: its material (kit/), its scenes and the finished videos (salida/)
+    └── AnotherProduct/
 ```
 
-- Open your AI in **`Videos`** or in the project folder. **Never in your product's repo**: the repo is read-only (you
-  give it the path and youtubeman reads it without touching it).
-- Finished videos go to `Videos/<Project>/salida/`, versioned (`-v1`, `-v2`…). A previous version is never deleted.
+- Open your AI **inside the `youtubeman` folder**: that's the only place where the skill and the agents exist.
+  **Never in your product's repo**: the repo is read-only (you give it the path and youtubeman reads it without
+  touching it).
+- Each video is saved in `videos/<Project>/` and finished ones go to `videos/<Project>/salida/`, versioned (`-v1`,
+  `-v2`…). A previous version is never deleted. git ignores `videos/`: your videos are never uploaded to the repo.
 
 ## 2. Ask for it
 
@@ -124,17 +127,17 @@ A ~30-second video, start to finish, uses roughly **1 to 1.5 million tokens** in
 
 ## 9. Without Claude Code
 
-The studio doesn't depend on any specific AI. With another one (Codex, Gemini, Cursor…), give it as instructions:
+The studio doesn't depend on any specific AI. Codex and other AIs read `AGENTS.md` when opened in the studio folder;
+if yours doesn't on its own, tell it "read AGENTS.md". Everything is there:
 
-- `claude/skills/youtubeman/SKILL.md`: the full process and checkpoints.
-- `claude/skills/youtubeman/encargos.md` and `claude/agents/*.md`: what each specialist does (explorer, animator,
-  critic).
+- `.claude/skills/youtubeman/SKILL.md`: the full process and checkpoints.
+- `.claude/skills/youtubeman/encargos.md` and `.claude/agents/*.md`: what each specialist does (explorer, animator,
+  critic). If your AI has no subagents, it does those tasks itself following their briefs.
 - `REGLAS.md` and `docs/CONTRATO-ESCENA.md`: the rules for the videos and how a scene is written.
 
-In those documents, `{{ESTUDIO}}` is the path of your `_estudio` folder and `{{VIDEOS}}` the path of your `Videos`
-folder. The example project `ejemplos/demo` is the model to follow.
+The example project `ejemplos/demo` is the model to follow.
 
 ## 10. If something fails
 
-First, always: `npm run doctor` inside `_estudio` (or ask your AI to run it). It says what's missing and how to fix
-it. More fixes: [RUNBOOK.md](RUNBOOK.md) (in Spanish).
+First, always: `npm run doctor` in the studio folder (or ask your AI to run it). It says what's missing and how to
+fix it. More fixes: [RUNBOOK.md](RUNBOOK.md) (in Spanish).

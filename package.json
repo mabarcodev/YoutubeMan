@@ -1,6 +1,6 @@
 {
   "name": "youtubeman-estudio",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "youtubeman: vídeos de lanzamiento, demos y publicaciones hechos con código (motor seek(t), Playwright y ffmpeg), 100 % en local.",
   "license": "MIT",

@@ -1,7 +1,8 @@
 # ADR 0005 · Repo público: rutas por marcadores e instalación completa
 
 - **Fecha:** 2026-10-05
-- **Estado:** aceptada
+- **Estado:** sustituida en parte por la ADR 0006 (sin marcadores ni `instalar-agentes`; las versiones fijadas y
+  Python obligatorio siguen igual)
 
 ## Contexto
 

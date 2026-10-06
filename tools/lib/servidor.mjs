@@ -4,7 +4,7 @@ import path from 'node:path';
 
 // Servidor estático local. Los módulos ES no se pueden importar desde file:// en Chromium,
 // así que el render y la vista previa sirven el proyecto por HTTP:
-//   /estudio/...  → carpeta _estudio (motor, plantillas)
+//   /estudio/...  → carpeta del estudio (motor, plantillas)
 //   /...          → carpeta del proyecto (escenas, kit, proyecto.json)
 
 const MIME = {

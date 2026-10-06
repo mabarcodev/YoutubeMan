@@ -56,7 +56,7 @@ export default {
 
 ## 3. Rutas
 
-El servidor local sirve **`/estudio/…`** desde `_estudio/` y **`/…`** desde la carpeta del proyecto:
+El servidor local sirve **`/estudio/…`** desde la carpeta del estudio y **`/…`** desde la carpeta del proyecto:
 
 - Motor: `import { spring } from '/estudio/engine/motion.js';`
 - Material: `/kit/capturas/panel.png`, `/kit/fuentes/…`, `/kit/audio/…`; el proyecto: `/proyecto.json`.

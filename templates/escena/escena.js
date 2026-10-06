@@ -7,7 +7,7 @@
 //   8    fin
 //
 // Copia esta carpeta a escenas/NN-nombre/, cambia el texto, los colores (LOOK.md) y las capturas (kit/capturas).
-// Referencia del motor: _estudio/docs/CONTRATO-ESCENA.md. Reglas: _estudio/REGLAS.md.
+// Referencia del motor: docs/CONTRATO-ESCENA.md del estudio. Reglas: REGLAS.md del estudio.
 import { spring, springTo, lerp } from '/estudio/engine/motion.js';
 import { crear, aplicar, palabrasEnMascara, subirDesdeMascara } from '/estudio/engine/tecnicas.js';
 

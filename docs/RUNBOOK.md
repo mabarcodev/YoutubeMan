@@ -1,16 +1,16 @@
 # Runbook · qué hacer si algo falla
 
-Primero, siempre: `npm run doctor` (desde `<carpeta-de-vídeos>/_estudio`). Dice qué falta y cómo arreglarlo.
+Primero, siempre: `npm run doctor` (en la carpeta del estudio). Dice qué falta y cómo arreglarlo.
 
 ## Instalación
 
 | Síntoma                                                     | Qué hacer                                                                                                                                                                                                                               |
 | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `No encuentro ffmpeg`                                       | `winget install --id Gyan.FFmpeg -e --source winget` (la fuente msstore da error de certificado). Si ya está instalado, abre una consola nueva o define `FFMPEG_PATH`. El estudio también lo busca en la carpeta de paquetes de winget. |
-| Chromium no arranca / `Executable doesn't exist`            | `npx playwright install chromium` dentro de `_estudio`.                                                                                                                                                                                 |
-| `librosa` no disponible (sin BPM ni pulsos)                 | `npm run preparar` dentro de `_estudio`: crea `.venv` e instala librosa con las versiones de `requirements.txt`. Es obligatorio: sin él no se mide el ritmo de la música.                                                               |
+| Chromium no arranca / `Executable doesn't exist`            | `npx playwright install chromium` en la carpeta del estudio.                                                                                                                                                                            |
+| `librosa` no disponible (sin BPM ni pulsos)                 | `npm run instalar` en la carpeta del estudio: crea `.venv` e instala librosa con las versiones de `requirements.txt`. Es obligatorio: sin él no se mide el ritmo de la música.                                                          |
 | Errores raros tras actualizar Node o Playwright             | `npm ci` y `npx playwright install chromium`; luego `npm run smoke`.                                                                                                                                                                    |
-| En la carpeta temporal de Windows no se puede ejecutar nada | Es una restricción del sistema: el estudio vive entero en `D:`.                                                                                                                                                                         |
+| En la carpeta temporal de Windows no se puede ejecutar nada | Es una restricción de algunos equipos: clona el estudio en una carpeta normal (Documentos, otra unidad…), no en la temporal.                                                                                                            |
 
 ## Escenas
 
@@ -26,20 +26,20 @@ Primero, siempre: `npm run doctor` (desde `<carpeta-de-vídeos>/_estudio`). Dice
 
 ## Render
 
-| Síntoma                                    | Qué hacer                                                                                                                                                                   |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Va lento                                   | Itera con `--borrador`, revisa tramos con `--desde/--hasta` y deja el final para el final. Un vídeo de 12 s en calidad final tarda 1–2 min por formato en este equipo.      |
-| Un render largo en segundo plano «se para» | Si el equipo entra en reposo, el proceso se congela. Renderiza los formatos de uno en uno o con el equipo despierto.                                                        |
-| Vídeo sin sonido                           | ¿La escena declara `sonidos` o `musica`? ¿Se usó `--sin-audio`? Las rutas de audio empiezan por `/kit/…`.                                                                   |
-| Sonido adelantado o retrasado              | Mide el kit (`medir-audio.mjs --convertir`): los MP3 pueden esconder retardo y algunos efectos tienen el golpe tarde.                                                       |
-| Error de argumentos                        | El mensaje dice qué falta y cómo escribirlo. Un valor que empieza por «-» va pegado a su opción: `--opcion=-valor`. `--ayuda` lista todas las opciones de cada herramienta. |
+| Síntoma                                    | Qué hacer                                                                                                                                                                     |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Va lento                                   | Itera con `--borrador`, revisa tramos con `--desde/--hasta` y deja el final para el final. Un vídeo de 12 s en calidad final tarda 1–2 min por formato en un portátil normal. |
+| Un render largo en segundo plano «se para» | Si el equipo entra en reposo, el proceso se congela. Renderiza los formatos de uno en uno o con el equipo despierto.                                                          |
+| Vídeo sin sonido                           | ¿La escena declara `sonidos` o `musica`? ¿Se usó `--sin-audio`? Las rutas de audio empiezan por `/kit/…`.                                                                     |
+| Sonido adelantado o retrasado              | Mide el kit (`medir-audio.mjs --convertir`): los MP3 pueden esconder retardo y algunos efectos tienen el golpe tarde.                                                         |
+| Error de argumentos                        | El mensaje dice qué falta y cómo escribirlo. Un valor que empieza por «-» va pegado a su opción: `--opcion=-valor`. `--ayuda` lista todas las opciones de cada herramienta.   |
 
 ## Agentes
 
-| Síntoma                                             | Qué hacer                                                                                                                              |
-| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `/youtubeman` no aparece                            | `npm run instalar-agentes` y abre una sesión nueva de Claude Code.                                                                     |
-| Los agentes de `~/.claude` no coinciden con el repo | `npm run instalar-agentes -- --comprobar`; para volver a una versión anterior, cada archivo sustituido tiene su `.bak-AAAAMMDDHHmmss`. |
+| Síntoma                                   | Qué hacer                                                                                                                                                                                                                                                                     |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/youtubeman` no aparece                  | Abre tu IA **dentro** de la carpeta del estudio (no en la de arriba ni en una subcarpeta) y empieza una sesión nueva. Si instalaste la v0.2.0, borra `~/.claude/skills/youtubeman` y `~/.claude/agents/youtubeman-*.md`: esa copia antigua tiene prioridad sobre la del repo. |
+| Otra IA no sigue el proceso de youtubeman | Dile «lee AGENTS.md» al empezar. Si no tiene subagentes, hace ella misma las tareas del explorador, el animador y el crítico.                                                                                                                                                 |
 
 ## Volver atrás
 

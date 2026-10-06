@@ -2,14 +2,41 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
-## [Sin publicar]
+## [0.3.0] · 2026-10-06
+
+Todo dentro de la carpeta del estudio: nada se instala en la configuración de tu IA. Ver ADR 0006.
+
+> ⚠️ **Cambio incompatible.** Abre tu IA **dentro** de la carpeta del estudio. Si instalaste la v0.2.0, borra
+> `~/.claude/skills/youtubeman` y `~/.claude/agents/youtubeman-*.md`: esa copia antigua tiene prioridad sobre la
+> del repo. Los vídeos nuevos se crean en `videos/`; los que ya tengas fuera siguen valiendo si das su ruta.
+
+### Añadido
+
+- **`npm run instalar`:** un solo comando, también recién clonado. Instala las librerías (`npm ci`) si faltan, el
+  navegador de capturas, el entorno de Python y termina con el diagnóstico y con dónde abrir la IA. El README da una
+  línea que descarga e instala, y la opción de pedírselo a tu IA.
+- **`AGENTS.md`:** las instrucciones para Codex y otras IAs (Claude Code las lee a través de `CLAUDE.md`).
+- **README nuevo (es/en):** portada, «Qué puedes pedirle» con ejemplos, «Qué incluye» (la skill y los 3 agentes) y
+  la instalación explicada paso a paso.
+- **`videos/`:** carpeta de tus vídeos dentro del estudio, ignorada por git.
+- **`tests/unit/agentes.test.mjs`:** vigila que la skill y los agentes estén completos, sin rutas de ningún ordenador
+  y citando archivos que existen.
+- **ADR 0006:** todo dentro del repo.
 
 ### Cambiado
 
+- La skill y los agentes pasan de `claude/` a **`.claude/`** y se usan desde ahí, sin instalar: solo funcionan con
+  la IA abierta en la carpeta del estudio. Sin marcadores de ruta: el director da la ruta del estudio en cada encargo.
+- `nuevo-proyecto` crea los vídeos en `videos/<nombre>` y solo deja crear dentro del estudio ahí.
+- Los mensajes de las herramientas piden `npm run instalar` y hablan de «la carpeta del estudio».
 - Los tests de `referencia` usan un usuario y unos ids de X inventados en vez de los de un post real.
-- El traspaso ya no nombra el proyecto con el que se probó el flujo completo.
+- El traspaso y el RUNBOOK ya no nombran proyectos ni equipos concretos.
 - La guía (es/en) aclara que los enlaces de YouTube, Instagram o TikTok no se descargan solos: hay que pasar el
   archivo.
+
+### Quitado
+
+- `npm run instalar-agentes` (`tools/instalar-agentes.mjs`): ya no hace falta copiar nada a `~/.claude`.
 
 ## [0.2.0] · 2026-10-05
 

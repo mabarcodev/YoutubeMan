@@ -2,7 +2,7 @@
 
 > Ficha de estilo. **Cada escena la sigue al pie de la letra.** Se escribe a partir de la marca real del
 > producto (colores, fuentes y logo sacados del repo) y de las referencias aprobadas. Tú la editas;
-> Claude la obedece. Las reglas comunes del estudio (`_estudio/REGLAS.md`) se aplican siempre además de esta.
+> Claude la obedece. Las reglas comunes del estudio (`REGLAS.md`, en su raíz) se aplican siempre además de esta.
 
 - **Lienzo:** (color de fondo en hex; claro u oscuro y por qué)
 - **Tipografía de titulares:** (familia, peso, interletrado; archivo en `kit/fuentes/`)

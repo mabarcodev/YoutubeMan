@@ -1,29 +1,68 @@
+<p align="center">
+  <img src="docs/img/portada.jpg" alt="youtubeman: your AI video creation assistant" width="100%">
+</p>
+
 # youtubeman
 
 > [Versión en español](README.md)
 
 **Launch videos, product demos and social posts, made with code.** Give it your project and youtubeman takes real
-screenshots of your product, proposes the story and the style with you, animates every scene and delivers the MP4
+screenshots of your product, proposes the story and the style with you, animates every scene and hands you the video
 (or the post images) ready to publish.
 
-It is not AI-generated video: every frame is drawn with HTML and a function of time `dibujar(t)`, Playwright
-captures it and ffmpeg encodes it. Text is always crisp, the interface is the **real** one, and changing something
-means editing a line and rendering again.
+It is not AI-generated video: every frame is drawn with code. That is why text is always crisp, the interface is your
+product's **real** one, and changing something means editing a line and recording again.
 
 > The studio (docs, tools and agent instructions) is written in Spanish. Any modern AI handles it fine, and it can
 > talk to you in your language.
 
 https://github.com/user-attachments/assets/244f70cf-bef8-45a0-82eb-c74b77cee147
 
-## What it does
+## What you can ask for
 
-- **Real kit:** reads your product repo (read-only), extracts logo, colors and fonts, and takes real screenshots.
-- **Story and style with you:** proposes a beat-by-beat script and a look, and stops at every checkpoint until you
-  approve. It can copy the grammar of a reference video you like.
-- **Animation and critique:** animates the scenes, reviews them harshly (mobile legibility, pacing, brand) and
-  polishes them.
-- **Sound on the beat:** measures the music (BPM, beats and drop) so every cut lands on its beat.
-- **Formats:** 16:9 (X, YouTube, web), 9:16 (Reels, Shorts, TikTok), 1:1 and 4:5; images and carousels.
+Talk to it normally, like you would to a person. For example:
+
+- **A video of your app or project.** Give it the path to its folder and it looks through it **without touching
+  anything**: it takes the logo, colors, texts and real screenshots of your product.
+
+  > `/youtubeman make me a 20-second video of my app. It's in D:\Projects\MyApp`
+
+- **A video of your website.** Give it the address and it takes screenshots of the page itself.
+
+  > `/youtubeman I want a demo of https://mysite.com for Instagram`
+
+- **Copy a style you like.** Give it links to videos on X (or a video file you downloaded) as a reference: it copies
+  the pacing, colors and transitions, never the content.
+
+  > `/youtubeman give it the style of this video: https://x.com/user/status/123…`
+
+- **With music.** It finds licensed music and makes every cut land on the beat.
+- **For every social network.** Tell it where you will post it (YouTube, X, Reels, TikTok, LinkedIn…) and it prepares
+  the right size.
+- **Images and carousels.** It also makes a single post image or a carousel for Instagram or LinkedIn.
+
+**How it works with you:** before doing anything it proposes the story and the style, and it stops **4 times** so you
+can say "yes" or ask for changes. If you don't like something, say what's wrong and what you want ("at 9 seconds the
+price can't be read: make it readable on a phone"). Every version is saved separately (`-v1`, `-v2`…) and the previous
+one is never deleted. The finished video appears in `videos/<name>/salida/`.
+
+## What's included
+
+youtubeman is a small video studio with a director and three specialists:
+
+| Piece                   | What it is           | What it does                                                                                 |
+| ----------------------- | -------------------- | -------------------------------------------------------------------------------------------- |
+| `/youtubeman`           | Skill (the director) | Talks to you, proposes the story and the style, splits the work and stops at each checkpoint |
+| `youtubeman-explorador` | Agent (explorer)     | Looks through your repo or site without touching it and prepares the material                |
+| `youtubeman-animador`   | Agent (animator)     | Builds and polishes each scene                                                               |
+| `youtubeman-critico`    | Agent (critic)       | Reviews the result like a demanding director, scores it and points out the 3 worst problems  |
+| Engine and tools        | Code                 | Draw, record and review the videos (`engine/` and `tools/`)                                  |
+
+The skill and the agents are plain-text instructions and come ready inside the folder (`.claude/` and `AGENTS.md`).
+They only work with your AI opened inside the youtubeman folder: **nothing is installed in your AI's settings**.
+
+- **Claude Code (recommended):** loads them automatically. Type `/youtubeman`.
+- **Another AI (Codex, Cursor, Gemini…):** reads `AGENTS.md`. If it doesn't on its own, tell it "read AGENTS.md".
 
 **100 % local:** no cloud, no API keys, no MCP servers. Internet is only needed to install and, optionally, to fetch a
 reference video or look for licensed music.
@@ -47,36 +86,33 @@ If something is missing:
 | macOS                 | `brew install node python ffmpeg git`                                     |
 | Linux (Debian/Ubuntu) | `sudo apt install nodejs npm python3 python3-venv ffmpeg git`             |
 
-If you use an AI agent, it can check and install them for you (with your permission).
+If you use an AI, it can check and install them for you (with your permission).
 
 ## Installation
 
-Create a folder for your videos (for example `Videos`) and clone the studio inside it as `_estudio`:
+There are two steps: **download** the studio (git does it) and **install** what it needs (npm does it: libraries,
+the screenshot browser and Python to measure the music). This line does both. Paste it into PowerShell (Windows) or
+the Terminal (Mac and Linux):
 
 ```bash
-cd Videos
-git clone https://github.com/mabarcodev/YoutubeMan.git _estudio
-cd _estudio
-npm install
-npm run preparar   # screenshot browser + librosa with pinned versions + diagnostics
+git clone https://github.com/mabarcodev/YoutubeMan.git youtubeman; cd youtubeman; npm run instalar
 ```
 
-Each video lives in its own folder next to the studio (`Videos/MyProduct`, `Videos/AnotherProduct`…).
+- `git clone …` downloads the studio into a new folder called `youtubeman`.
+- `npm run instalar` installs everything else and ends with a check that tells you if something is missing.
 
-## Use it with your AI
+**Using an AI?** Let it do it. Open it in the folder where you want to keep it (for example, Documents) and paste:
 
-**Recommended: [Claude Code](https://claude.com/claude-code).** The studio ships the `/youtubeman` skill (the
-director) and its three agents (explorer, animator and critic) already in Claude Code's format. Add them once:
+> Install youtubeman from https://github.com/mabarcodev/YoutubeMan following its README
 
-```bash
-npm run instalar-agentes   # copies the skill and agents to ~/.claude with your computer's paths
-```
+It will ask for permission before each step. When it's done, close the AI and open it again **inside** the
+`youtubeman` folder.
 
-Open Claude Code in your `Videos` folder and type **`/youtubeman`**.
+## Use it
 
-**With another AI** (Codex, Gemini, Cursor…): the instructions are plain text documents. Give it
-`claude/skills/youtubeman/SKILL.md` (the process), `REGLAS.md` (the rules for every video) and
-`docs/CONTRATO-ESCENA.md` (how a scene is written). Each specialist's brief lives in `claude/agents/`.
+1. Open your AI **inside the `youtubeman` folder**. The first time it will ask whether you trust the folder: say yes.
+2. Type `/youtubeman` and what you want (see the examples above). The more specific, the better.
+3. Answer its questions and approve each step.
 
 👉 **Step-by-step first video, style references and tips: [docs/GUIDE.en.md](docs/GUIDE.en.md).**
 
@@ -87,20 +123,34 @@ director). The guide explains how to spend less.
 
 ## Tools
 
-Run them with `node tools/<tool>.mjs`; all of them have `--ayuda` (help):
+The director runs them for you. Run them with `node tools/<tool>.mjs`; all of them have `--ayuda` (help):
 
-| Tool               | What for                                                                |
-| ------------------ | ----------------------------------------------------------------------- |
-| `nuevo-proyecto`   | Creates a project folder from the templates                             |
-| `capturar`         | Real screenshots of a site or app (localhost too), transparent cut-outs |
-| `referencia`       | Frames and contact sheet of a reference video (file, URL or X post)     |
-| `medir-audio`      | Effect peaks, BPM, beats and music drop → `AUDIO.json`                  |
-| `vista-previa`     | Opens a scene in the browser with a timeline                            |
-| `render`           | MP4 in one or more formats, drafts, ranges or PNG stills                |
-| `revisar`          | Contact sheets, mobile check, strips, single-frame jumps and loop check |
-| `doctor`           | Installation diagnostics                                                |
-| `preparar`         | Screenshot browser and Python environment with pinned versions          |
-| `instalar-agentes` | Adds or checks the skill and agents in `~/.claude`                      |
+| Tool             | What for                                                                   |
+| ---------------- | -------------------------------------------------------------------------- |
+| `nuevo-proyecto` | Creates a video folder in `videos/` from the templates                     |
+| `capturar`       | Real screenshots of a site or app (localhost too), transparent cut-outs    |
+| `referencia`     | Frames and contact sheet of a reference video (file, URL or X post)        |
+| `medir-audio`    | Effect peaks, BPM, beats and music drop → `AUDIO.json`                     |
+| `vista-previa`   | Opens a scene in the browser with a timeline                               |
+| `render`         | MP4 in one or more formats, drafts, ranges or PNG stills                   |
+| `revisar`        | Contact sheets, mobile check, strips, single-frame jumps and loop check    |
+| `doctor`         | Installation diagnostics                                                   |
+| `preparar`       | What `npm run instalar` runs: libraries, screenshot browser and Python env |
+
+## Structure
+
+```
+.claude/     the /youtubeman skill and the 3 agents' briefs (used from this folder)
+AGENTS.md    the same instructions for Codex and other AIs
+videos/      your videos, one per folder (ignored by git: never uploaded)
+engine/      browser engine: springs, formats, tempo, editing, techniques
+tools/       command-line tools (tools/lib: their libraries)
+templates/   project, scene and edit templates
+ejemplos/    example project ("Ruta", a made-up app): the base the agents follow
+REGLAS.md    rules for every video
+docs/        GUIA (usage), CONTRATO-ESCENA (engine), RUNBOOK (troubleshooting), adr/ (decisions), img/ (cover)
+tests/       unit and integration tests
+```
 
 ## Contributing
 
@@ -110,7 +160,7 @@ Improvements are welcome: open an issue or a pull request. Before sending:
 npm run lint && npm run format:check && npm test
 ```
 
-Code conventions: [CLAUDE.md](CLAUDE.md) · changes: [CHANGELOG.md](CHANGELOG.md) · troubleshooting:
+Code conventions: [AGENTS.md](AGENTS.md) · changes: [CHANGELOG.md](CHANGELOG.md) · troubleshooting:
 [docs/RUNBOOK.md](docs/RUNBOOK.md).
 
 ## License

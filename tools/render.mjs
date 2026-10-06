@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Renderiza una escena o película a MP4 (o a PNG con --fotos).
 //
-//   node tools/render.mjs --proyecto D:\...\Videos\MiProducto --modulo pelicula.js --formato 16:9,9:16
+//   node tools/render.mjs --proyecto videos/MiProducto --modulo pelicula.js --formato 16:9,9:16
 //   node tools/render.mjs --proyecto ... --modulo escenas/01-gancho/escena.js --borrador
 //   node tools/render.mjs --proyecto ... --modulo escenas/01-gancho/escena.js --fotos 0,1.5,3
 //

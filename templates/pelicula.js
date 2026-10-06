@@ -5,7 +5,7 @@
 //                       03-cierre → si hace bucle, su último fotograma es el primero del gancho
 //
 // Cada traspaso es una forma compartida (un punto, una píldora, una tarjeta, un número): nunca un corte ni un
-// fundido. Copia este archivo a la raíz del proyecto como pelicula.js. Referencia: _estudio/docs/CONTRATO-ESCENA.md.
+// fundido. Copia este archivo a la raíz del proyecto como pelicula.js. Referencia: docs/CONTRATO-ESCENA.md del estudio.
 import { encadenar } from '/estudio/engine/composicion.js';
 import gancho from './escenas/01-gancho/escena.js';
 import demo from './escenas/02-demo/escena.js';

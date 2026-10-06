@@ -5,16 +5,17 @@
 ## 1. Las carpetas
 
 ```
-Videos/
-├── _estudio/        el estudio (este repo): no se toca para hacer vídeos
-├── MiProducto/      un proyecto: su material (kit/), sus escenas y sus vídeos (salida/)
-└── OtroProducto/
+youtubeman/              el estudio (este repo): aquí abres tu IA
+├── .claude/  AGENTS.md  la skill y los agentes (vienen ya puestos)
+└── videos/
+    ├── MiProducto/      un vídeo: su material (kit/), sus escenas y los vídeos terminados (salida/)
+    └── OtroProducto/
 ```
 
-- Abre tu IA en **`Videos`** o en la carpeta del proyecto. **Nunca en el repo de tu producto**: el repo solo se lee
-  (le das la ruta y youtubeman lo consulta sin tocarlo).
-- Los vídeos terminados salen en `Videos/<Proyecto>/salida/`, versionados (`-v1`, `-v2`…). Nunca se borra una
-  versión anterior.
+- Abre tu IA **dentro de la carpeta `youtubeman`**: solo ahí están la skill y los agentes. **Nunca en el repo de tu
+  producto**: el repo solo se lee (le das la ruta y youtubeman lo consulta sin tocarlo).
+- Cada vídeo se guarda en `videos/<Proyecto>/` y los terminados salen en `videos/<Proyecto>/salida/`, versionados
+  (`-v1`, `-v2`…). Nunca se borra una versión anterior. git ignora `videos/`: tus vídeos no se suben al repo.
 
 ## 2. Pídelo
 
@@ -125,17 +126,17 @@ Code. Para gastar menos:
 
 ## 9. Sin Claude Code
 
-El estudio no depende de ninguna IA. Con otra (Codex, Gemini, Cursor…), dale como instrucciones:
+El estudio no depende de ninguna IA. Codex y otras IAs leen `AGENTS.md` al abrirlas en la carpeta del estudio; si la
+tuya no lo hace sola, dile «lee AGENTS.md». Ahí está todo:
 
-- `claude/skills/youtubeman/SKILL.md`: el proceso completo y los puntos de control.
-- `claude/skills/youtubeman/encargos.md` y `claude/agents/*.md`: qué hace cada especialista (explorador, animador,
-  crítico).
+- `.claude/skills/youtubeman/SKILL.md`: el proceso completo y los puntos de control.
+- `.claude/skills/youtubeman/encargos.md` y `.claude/agents/*.md`: qué hace cada especialista (explorador, animador,
+  crítico). Si tu IA no tiene subagentes, hace ella misma esas tareas siguiendo sus fichas.
 - `REGLAS.md` y `docs/CONTRATO-ESCENA.md`: las reglas de los vídeos y cómo se escribe una escena.
 
-En esos documentos, `{{ESTUDIO}}` es la ruta de tu carpeta `_estudio` y `{{VIDEOS}}`, la de tu carpeta `Videos`.
 El proyecto de ejemplo `ejemplos/demo` sirve de modelo.
 
 ## 10. Si algo falla
 
-Primero, siempre: `npm run doctor` dentro de `_estudio` (o pídeselo a tu IA). Dice qué falta y cómo arreglarlo. Más
-soluciones: [RUNBOOK.md](RUNBOOK.md).
+Primero, siempre: `npm run doctor` en la carpeta del estudio (o pídeselo a tu IA). Dice qué falta y cómo arreglarlo.
+Más soluciones: [RUNBOOK.md](RUNBOOK.md).

@@ -17,7 +17,7 @@ Proyecto completo y pequeño que demuestra el estudio de punta a punta y sirve d
 
 ## Cómo se renderiza
 
-Desde `<carpeta-de-vídeos>/_estudio`:
+Desde la carpeta del estudio:
 
 ```bash
 # Volver a capturar la maqueta (solo si cambia kit/app/index.html)

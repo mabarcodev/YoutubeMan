@@ -20,7 +20,7 @@ se lee (solo lectura) desde su repo: `__REPO__`.
 | `revision/`                  | Material del crítico: hojas de contactos, notas y puntuaciones             |
 | `salida/`                    | Vídeos e imágenes finales, versionados (`-v1`, `-v2`…). Nunca se sobrescriben |
 
-## Comandos (desde `<carpeta-de-vídeos>/_estudio`)
+## Comandos (desde la carpeta del estudio)
 
 ```bash
 # Vista previa con barra de tiempo en el navegador

@@ -1,7 +1,8 @@
 # ADR 0004 · Taller en `Videos/_estudio` y agentes versionados aquí
 
 - **Fecha:** 2026-10-02
-- **Estado:** aceptada
+- **Estado:** sustituida en parte por la ADR 0006 (los agentes ya no se instalan en `~/.claude` y los vídeos viven
+  en `videos/` dentro del estudio)
 
 ## Contexto
 
