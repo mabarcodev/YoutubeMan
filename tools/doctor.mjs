@@ -138,8 +138,8 @@ export async function comprobarChromium({ lanzar = lanzarChromiumReal, limiteMs 
       'error',
       sinPaquete ? 'falta el paquete playwright' : String(e?.message ?? e).split('\n')[0],
       sinPaquete
-        ? 'En _estudio: npm install y después npx playwright install chromium.'
-        : 'En _estudio: npx playwright install chromium (si sigue fallando, reinicia y vuelve a probar).',
+        ? 'En la carpeta del estudio: npm run instalar.'
+        : 'En la carpeta del estudio: npx playwright install chromium (si sigue fallando, reinicia y vuelve a probar).',
     );
   } finally {
     clearTimeout(temporizador);

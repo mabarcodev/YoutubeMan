@@ -24,7 +24,7 @@ export const AYUDA = `Uso: node tools/medir-audio.mjs <archivo|carpeta> [opcione
 
 Formatos: wav, mp3, ogg, m4a, aac, flac. Una carpeta se recorre con sus subcarpetas.
 Si el JSON ya existe se fusiona: licencia, fuente, notas y cualquier campo escrito a mano se conservan.
-El ritmo usa el Python de _estudio/.venv (librosa) y tarda unos segundos por pista.`;
+El ritmo usa el Python del estudio (.venv, con librosa) y tarda unos segundos por pista.`;
 
 export const EXTENSIONES = ['.wav', '.mp3', '.ogg', '.m4a', '.aac', '.flac'];
 /** A partir de esta duración un audio se trata como música y se le mide el ritmo aunque no se pida. */
@@ -48,7 +48,7 @@ const GENERADOS = new Set([
 ]);
 
 const LEEME =
-  'Medición del kit de sonido (node _estudio/tools/medir-audio.mjs). Cada clave es la ruta del audio desde ' +
+  'Medición del kit de sonido (node tools/medir-audio.mjs del estudio). Cada clave es la ruta del audio desde ' +
   'este archivo; "archivo" es la ruta desde el proyecto, la que va en sonidos[].archivo o musica.archivo. ' +
   'duracionMs y picoMs en milisegundos (picoMs = dónde cae el golpe; el render adelanta el sonido solo). ' +
   'bpm, primerPulso (primer tiempo fuerte), subida, pulsos, compases y golpes en segundos desde el inicio ' +
@@ -178,7 +178,8 @@ export function rutaPython(estudio = ESTUDIO, plataforma = process.platform) {
 }
 
 export const INSTRUCCIONES_VENV =
-  'En _estudio: npm run preparar (crea el entorno .venv e instala librosa con las versiones de requirements.txt).';
+  'En la carpeta del estudio: npm run instalar (crea el entorno .venv e instala librosa con las versiones de ' +
+  'requirements.txt).';
 
 /**
  * Ritmo con tools/beats.py. Lo que no es WAV se decodifica antes con ffmpeg: así pulsos, picos y mezcla

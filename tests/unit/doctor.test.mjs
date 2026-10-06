@@ -189,14 +189,14 @@ describe('comprobarChromium', () => {
     assert.match(r.arreglo, /npx playwright install chromium/);
   });
 
-  test('sin el paquete playwright: dice que falta npm install', async () => {
+  test('sin el paquete playwright: pide npm run instalar', async () => {
     const r = await comprobarChromium({
       lanzar: async () => {
         throw Object.assign(new Error("Cannot find package 'playwright'"), { code: 'ERR_MODULE_NOT_FOUND' });
       },
     });
     assert.equal(r.detalle, 'falta el paquete playwright');
-    assert.match(r.arreglo, /npm install y después npx playwright install chromium/);
+    assert.equal(r.arreglo, 'En la carpeta del estudio: npm run instalar.');
   });
 
   test('se queda colgado: error al pasar el límite, sin esperar más', async () => {
@@ -217,9 +217,9 @@ describe('comprobarPython', () => {
     assert.equal(r.arreglo, INSTRUCCIONES_VENV);
   });
 
-  test('el entorno no carga librosa: error y se arregla con npm run preparar', () => {
+  test('el entorno no carga librosa: error y se arregla con npm run instalar', () => {
     const r = comprobarPython({
-      python: 'C:\\Vídeos\\_estudio\\.venv\\Scripts\\python.exe',
+      python: 'C:\\Vídeos\\youtubeman\\.venv\\Scripts\\python.exe',
       existe: () => true,
       ejecutar: () => ({ codigo: 1, salida: "ModuleNotFoundError: No module named 'librosa'", error: null }),
     });
@@ -325,7 +325,10 @@ describe('diagnosticar, codigoSalida e informe', () => {
     const texto = informe(r, 'D:\\estudio');
     assert.ok(texto.startsWith('Diagnóstico del estudio youtubeman (D:\\estudio)'));
     assert.match(texto, /❌ ffmpeg: no encontrado\n {3}→ Instálalo: winget install/);
-    assert.match(texto, /❌ Chromium \(Playwright\): sin Chromium\n {3}→ En _estudio: npx playwright install chromium/);
+    assert.match(
+      texto,
+      /❌ Chromium \(Playwright\): sin Chromium\n {3}→ En la carpeta del estudio: npx playwright install chromium/,
+    );
     assert.match(texto, /✅ ffprobe: 9\.0\.2/);
     assert.match(texto, /❌ Falta algo obligatorio/);
   });

@@ -13,6 +13,7 @@
     "node": ">=22"
   },
   "scripts": {
+    "instalar": "node tools/preparar.mjs",
     "preparar": "node tools/preparar.mjs",
     "doctor": "node tools/doctor.mjs",
     "test": "node --test \"tests/unit/**/*.test.mjs\"",

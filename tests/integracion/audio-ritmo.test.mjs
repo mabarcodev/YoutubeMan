@@ -23,7 +23,7 @@ const T_GOLPE = 1.234; // s: dónde cae el golpe del WAV de pico conocido
 
 function motivoSinPython() {
   const python = rutaPython();
-  if (!fs.existsSync(python)) return `falta el Python del estudio (${python}): crea _estudio/.venv con librosa`;
+  if (!fs.existsSync(python)) return `falta el Python del estudio (${python}): ejecuta npm run instalar`;
   // find_spec no importa librosa (que tarda segundos): solo mira si está instalada.
   const r = spawnSync(python, ['-c', 'import importlib.util as u, sys; sys.exit(0 if u.find_spec("librosa") else 1)'], {
     windowsHide: true,

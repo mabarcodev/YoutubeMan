@@ -3,7 +3,7 @@
 
     python tools/beats.py <audio>   ->  JSON por stdout (código 0)
 
-Lo llama tools/medir-audio.mjs con el Python de _estudio/.venv (librosa 1.0). Campos del JSON, todos los
+Lo llama tools/medir-audio.mjs con el Python del estudio (.venv, librosa 1.0). Campos del JSON, todos los
 tiempos en segundos desde el inicio del archivo:
 
   duracion     duración de la pista.
@@ -351,7 +351,7 @@ def main(argv):
     try:
         import librosa
     except ImportError as e:
-        print(f"No encuentro librosa ({e}). Instálalo en _estudio/.venv: pip install librosa", file=sys.stderr)
+        print(f"No encuentro librosa ({e}). En la carpeta del estudio: npm run instalar", file=sys.stderr)
         return 2
     ruta = argv[0]
     if not os.path.isfile(ruta):
