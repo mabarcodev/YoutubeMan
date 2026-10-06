@@ -51,6 +51,18 @@ describe('skill y agentes de .claude/', () => {
     }
   });
 
+  test('cabeceras YAML válidas: sin «: » ni « #» en valores sin comillas', () => {
+    // Claude Code ignora entero un agente o una skill cuya cabecera no es YAML válido (pasó con el crítico: su
+    // descripción decía «vídeo: genera…» y nunca se cargaba). En un valor sin comillas, «: » abre otro mapa y « #»
+    // empieza un comentario.
+    for (const rel of [SKILL, ...AGENTES.map((a) => `.claude/agents/${a}.md`)]) {
+      for (const [clave, valor] of Object.entries(frontmatter(leer(rel)))) {
+        if (/^["']/.test(valor)) continue;
+        assert.doesNotMatch(valor, /:\s|\s#/, `${rel} → ${clave}: entrecomíllalo o quita «: » / « #»`);
+      }
+    }
+  });
+
   test('sin marcadores ni rutas de ningún ordenador', () => {
     for (const rel of INSTRUCCIONES) {
       const texto = leer(rel);

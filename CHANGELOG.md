@@ -38,6 +38,11 @@ Todo dentro de la carpeta del estudio: nada se instala en la configuración de t
 
 - `npm run instalar-agentes` (`tools/instalar-agentes.mjs`): ya no hace falta copiar nada a `~/.claude`.
 
+### Corregido
+
+- **El agente crítico no se cargaba:** su descripción tenía «vídeo: genera…» sin comillas, que no es YAML válido, y
+  Claude Code ignoraba el agente entero. `tests/unit/agentes.test.mjs` vigila ahora las cabeceras.
+
 ## [0.2.0] · 2026-10-05
 
 Primera versión pública.

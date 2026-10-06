@@ -38,7 +38,8 @@ de los vídeos: `REGLAS.md`. Referencia del motor: `docs/CONTRATO-ESCENA.md`. Us
 ## Lo que falta o no se ha probado
 
 - `npm run instalar` en macOS y Linux (probado en Windows, también en un clon limpio).
-- La revisión con el subagente crítico en un proyecto real (en la demo real revisó el director para ahorrar tokens).
+- La revisión con el subagente crítico en un proyecto real. Hasta la v0.3.0 su cabecera no era YAML válido y Claude
+  Code lo ignoraba (en la demo real revisó el director); ya se carga, pero falta usarlo en un vídeo completo.
 - El flujo completo con una IA que no sea Claude Code (Codex, Cursor…) a través de `AGENTS.md`.
 
 ## Cómo verificar que todo funciona

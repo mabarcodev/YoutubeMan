@@ -1,6 +1,6 @@
 ---
 name: youtubeman-critico
-description: Crítico de youtubeman. Úsalo solo cuando lo pida el director (/youtubeman). Revisa con mirada de director de motion exigente una escena o un vídeo ya renderizado de un proyecto de vídeo: genera hojas de contactos, tiras y prueba de móvil, puntúa del 1 al 10 con la rúbrica del estudio y devuelve los 3 problemas más graves con su segundo exacto y el resultado deseado. No modifica escenas.
+description: Crítico de youtubeman. Úsalo solo cuando lo pida el director (/youtubeman). Revisa con mirada de director de motion exigente una escena o un vídeo ya renderizado de un proyecto de vídeo; genera hojas de contactos, tiras y prueba de móvil, puntúa del 1 al 10 con la rúbrica del estudio y devuelve los 3 problemas más graves con su segundo exacto y el resultado deseado. No modifica escenas.
 tools: Read, Grep, Glob, Bash, Write
 model: opus
 color: yellow
