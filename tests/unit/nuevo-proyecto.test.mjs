@@ -109,10 +109,10 @@ describe('valoresProyecto y fechaISO', () => {
 });
 
 describe('resolverCarpeta', () => {
-  const videos = path.resolve('/Vídeos');
-  const cwd = path.resolve('/Vídeos/_estudio');
+  const cwd = path.resolve('/Vídeos/youtubeman');
+  const videos = path.join(cwd, 'videos');
 
-  test('un nombre suelto va a la carpeta de vídeos (no dentro de _estudio)', () => {
+  test('un nombre suelto va a videos/ (no a la raíz del código del estudio)', () => {
     assert.equal(resolverCarpeta('MiProducto', { cwd, videos }), path.join(videos, 'MiProducto'));
     assert.equal(resolverCarpeta('  Mi App ñ ', { cwd, videos }), path.join(videos, 'Mi App ñ'));
   });
@@ -272,10 +272,17 @@ describe('crearProyecto con las plantillas reales', () => {
     assert.ok(fs.existsSync(path.join(carpeta, 'proyecto.json')));
   });
 
-  test('se niega a crear el proyecto dentro del estudio o alrededor de él', () => {
-    assert.throws(() => crearProyecto({ carpeta: path.join(estudio, 'x'), estudio }), /dentro de _estudio/);
-    assert.throws(() => crearProyecto({ carpeta: tmp, estudio }), /dentro de _estudio ni contenerlo/);
+  test('dentro del estudio solo deja crear en videos/<nombre>, y nunca alrededor del estudio', () => {
+    const codigo = /dentro del código del estudio ni contenerlo .*Usa videos\/<nombre>/;
+    assert.throws(() => crearProyecto({ carpeta: path.join(estudio, 'x'), estudio }), codigo);
+    assert.throws(() => crearProyecto({ carpeta: path.join(estudio, 'videos'), estudio }), codigo);
+    assert.throws(() => crearProyecto({ carpeta: tmp, estudio }), codigo);
     assert.equal(fs.existsSync(path.join(estudio, 'x')), false);
+
+    const enVideos = path.join(estudio, 'videos', 'Mi App');
+    const r = crearProyecto({ carpeta: enVideos, fecha: FECHA, estudio });
+    assert.equal(r.carpeta, enVideos);
+    assert.ok(fs.existsSync(path.join(enVideos, 'proyecto.json')));
   });
 
   test('si la ruta es un archivo o faltan las plantillas, error claro', () => {

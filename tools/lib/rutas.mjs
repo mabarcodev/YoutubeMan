@@ -5,10 +5,13 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 export const esPrincipal = (metaUrl) =>
   !!process.argv[1] && metaUrl === pathToFileURL(path.resolve(process.argv[1])).href;
 
-/** Carpeta raíz del estudio (_estudio). */
+/** Carpeta raíz del estudio (este repo). */
 export const ESTUDIO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-/** Carpeta principal de vídeos (la que contiene _estudio y un subdirectorio por proyecto). */
-export const VIDEOS = path.dirname(ESTUDIO);
+/**
+ * Carpeta de los vídeos: una subcarpeta por proyecto, dentro del estudio para que todo viva en la carpeta donde se
+ * abre la IA. git la ignora (salvo su README), así que los vídeos de cada persona nunca se suben.
+ */
+export const VIDEOS = path.join(ESTUDIO, 'videos');
 
 /**
  * Convierte la ruta de un módulo de escena (absoluta o relativa al proyecto) en la ruta URL

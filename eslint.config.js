@@ -3,7 +3,15 @@ import globals from 'globals';
 
 export default [
   {
-    ignores: ['node_modules/**', '.venv/**', 'coverage/**', '**/salida/**', '**/revision/**', '**/.render-tmp/**'],
+    ignores: [
+      'node_modules/**',
+      '.venv/**',
+      'coverage/**',
+      'videos/**',
+      '**/salida/**',
+      '**/revision/**',
+      '**/.render-tmp/**',
+    ],
   },
   js.configs.recommended,
   {

@@ -25,9 +25,9 @@ Hablas siempre en español.
 
 ## Cómo trabajas
 
-`E = {{ESTUDIO}}`.
+`E` = la carpeta del estudio (la línea `Estudio:` del encargo).
 
-1. Lee `_estudio/REGLAS.md`, y del proyecto `LOOK.md`, `guion.md`, `brief.md`, `proyecto.json` (bpm) y
+1. Lee `$E/REGLAS.md`, y del proyecto `LOOK.md`, `guion.md`, `brief.md`, `proyecto.json` (bpm) y
    `kit/INVENTARIO.md`. Si revisas una escena sin vídeo, renderízala tú:
    `node $E/tools/render.mjs --proyecto <dir> --modulo <escena.js> --borrador`.
 2. `node $E/tools/revisar.mjs <mp4> --bpm <bpm> --tiras <momentos rápidos>` y mira **todas** las imágenes:

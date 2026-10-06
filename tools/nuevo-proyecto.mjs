@@ -57,8 +57,8 @@ export function leerOpciones(argv) {
 }
 
 /**
- * Carpeta del proyecto. Un nombre suelto ("MiProducto") va a la carpeta de vídeos, que es donde viven los
- * proyectos; si no, al ejecutarlo desde _estudio el proyecto acabaría dentro del estudio.
+ * Carpeta del proyecto. Un nombre suelto ("MiProducto") va a la carpeta de vídeos (videos/), que es donde viven
+ * los proyectos; si no, al ejecutarlo desde la raíz del estudio el proyecto acabaría mezclado con el código.
  */
 export function resolverCarpeta(arg, { cwd = process.cwd(), videos = VIDEOS } = {}) {
   const texto = String(arg).trim();
@@ -161,12 +161,17 @@ export function crearProyecto({
   fecha = new Date(),
   plantillas = PLANTILLAS,
   estudio = ESTUDIO,
+  videos = path.join(estudio, 'videos'),
   cwd,
 } = {}) {
   const destino = path.resolve(carpeta);
-  if (dentroDe(destino, estudio) || dentroDe(estudio, destino)) {
+  // Dentro del estudio solo vale videos/<proyecto>: es la única carpeta que git ignora. En cualquier otro sitio del
+  // estudio el proyecto se mezclaría con el código (y se subiría al repo); y nunca puede contener al estudio.
+  const enVideos = dentroDe(videos, destino) && path.resolve(videos) !== destino;
+  if (dentroDe(destino, estudio) || (dentroDe(estudio, destino) && !enVideos)) {
     throw new Error(
-      `El proyecto no puede estar dentro de _estudio ni contenerlo (${destino}). Usa una carpeta hermana.`,
+      `El proyecto no puede estar dentro del código del estudio ni contenerlo (${destino}). ` +
+        `Usa videos/<nombre> (por ejemplo: node tools/nuevo-proyecto.mjs MiApp) o una carpeta fuera del estudio.`,
     );
   }
   if (fs.existsSync(destino) && !fs.statSync(destino).isDirectory()) {

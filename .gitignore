@@ -8,3 +8,8 @@ smoke/salida/
 *.tmp.mp4
 ejemplos/*/salida/
 ejemplos/*/revision/
+# Los vídeos de cada persona: nunca se suben (solo el README que explica la carpeta).
+/videos/*
+!/videos/README.md
+# Permisos locales que Claude Code guarda al aceptar «no volver a preguntar».
+.claude/settings.local.json

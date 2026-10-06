@@ -22,8 +22,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "smoke": "node tools/smoke.mjs",
-    "instalar-agentes": "node tools/instalar-agentes.mjs"
+    "smoke": "node tools/smoke.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -1,12 +1,15 @@
 # Plantillas de encargo para los subagentes
 
 Los subagentes empiezan sin memoria y **no pueden preguntar al usuario**: todo lo que necesiten va en el encargo.
-Sustituye lo que está entre `<>`. Usa siempre rutas absolutas.
+Sustituye lo que está entre `<>`. Usa siempre rutas absolutas. `<estudio>` es la ruta absoluta de la carpeta del
+estudio (la raíz de este repo, donde está abierta la IA). Si el usuario eligió otra carpeta para el vídeo, pon la
+suya en lugar de `<estudio>/videos/<Proyecto>`.
 
 ## Explorador · kit inicial
 
 ```text
-Proyecto: <Proyecto> · carpeta del proyecto: {{VIDEOS}}/<Proyecto>
+Estudio: <estudio>
+Proyecto: <Proyecto> · carpeta del proyecto: <estudio>/videos/<Proyecto>
 Repo del producto (SOLO LECTURA): <ruta del repo>
 Web o app para capturas: <URL pública | "arrancar en local: PERMITIDO con <comando>" | "NO arrancar nada">
 Instalar dependencias en el repo: <NO | PERMITIDO: <comando exacto>>
@@ -21,7 +24,8 @@ Prepara el kit (marca, capturas reales, referencias, audio) y escribe kit/INVENT
 ## Explorador · capturas que faltan (después del guion)
 
 ```text
-Proyecto: {{VIDEOS}}/<Proyecto> · repo (solo lectura): <ruta>
+Estudio: <estudio>
+Proyecto: <estudio>/videos/<Proyecto> · repo (solo lectura): <ruta>
 Permisos: <igual que antes / cambios>
 El guion aprobado (guion.md) necesita estos estados reales que no tenemos:
 - <escena 02: el interruptor "Recordatorios" APAGADO y la línea de tiempo vacía>
@@ -32,10 +36,11 @@ Captúralos y actualiza kit/INVENTARIO.md.
 ## Animador · una escena
 
 ```text
-Proyecto: {{VIDEOS}}/<Proyecto>
+Estudio: <estudio>
+Proyecto: <estudio>/videos/<Proyecto>
 Tu escena: <NN-nombre> → escribe SOLO en escenas/<NN-nombre>/
-Lee antes: _estudio/REGLAS.md, _estudio/docs/CONTRATO-ESCENA.md, LOOK.md, brief.md, guion.md (tu escena: "<título>"),
-kit/INVENTARIO.md, kit/AUDIO.json (si existe) y el ejemplo _estudio/ejemplos/demo/.
+Lee antes: <estudio>/REGLAS.md, <estudio>/docs/CONTRATO-ESCENA.md, LOOK.md, brief.md, guion.md (tu escena: "<título>"),
+kit/INVENTARIO.md, kit/AUDIO.json (si existe) y el ejemplo <estudio>/ejemplos/demo/.
 Formatos que deben funcionar: <16:9, 9:16>
 Traspasos: entra desde <forma con la que acaba la escena anterior>; sale hacia <forma con la que empieza la siguiente>.
 Construye la escena, renderiza fotos y borrador, mira tus propios fotogramas y púlela hasta que cumpla.
@@ -45,7 +50,8 @@ Devuélveme: archivos, puntuaciones propias, problemas abiertos y "lo que aún c
 ## Animador · arreglos tras el crítico o las notas del usuario
 
 ```text
-Proyecto: {{VIDEOS}}/<Proyecto> · escena: escenas/<NN-nombre>/escena.js
+Estudio: <estudio>
+Proyecto: <estudio>/videos/<Proyecto> · escena: escenas/<NN-nombre>/escena.js
 Informe a resolver: <ruta a revision/<NN-nombre>/ronda-N.md o las notas del usuario como "problema → resultado deseado">
 Arregla SOLO eso. Mantén tiempos, sonidos y todo lo demás. Comprueba cada arreglo con --desde/--hasta y con fotos
 antes y después del momento. Devuélveme qué cambiaste (3 líneas) y las nuevas fotos.
@@ -54,7 +60,8 @@ antes y después del momento. Devuélveme qué cambiaste (3 líneas) y las nueva
 ## Animador · montaje
 
 ```text
-Proyecto: {{VIDEOS}}/<Proyecto>
+Estudio: <estudio>
+Proyecto: <estudio>/videos/<Proyecto>
 Monta pelicula.js con las escenas <01-gancho, 02-demo, …> en este orden. Reutiliza su código, no lo redibujes.
 Traspasos: <forma compartida entre cada par>. Música: <archivo de kit/audio y su subida según AUDIO.json>; la subida
 debe caer en <el momento de la prueba>. Recorta escenas solo por pulsos enteros; nunca estires el tiempo.
@@ -65,7 +72,8 @@ Renderiza borrador del 16:9, revisa y devuélveme el mapa de pulsos con la subid
 ## Crítico · una escena o el vídeo final
 
 ```text
-Proyecto: {{VIDEOS}}/<Proyecto>
+Estudio: <estudio>
+Proyecto: <estudio>/videos/<Proyecto>
 Qué revisar: <escenas/<NN-nombre>/escena.js (renderiza tú el borrador) | ruta al MP4>
 Ronda: <N> · formatos a comprobar: <16:9, 9:16>
 Momentos rápidos para tiras: <segundos, si los sabes>

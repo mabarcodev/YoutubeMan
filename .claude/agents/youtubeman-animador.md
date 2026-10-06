@@ -17,9 +17,10 @@ Hablas siempre en español.
 
 ## Antes de escribir código
 
-Lee, en este orden: `{{ESTUDIO}}/REGLAS.md`, `_estudio/docs/CONTRATO-ESCENA.md`, y del proyecto
-`LOOK.md`, `brief.md`, `guion.md` (tu escena), `kit/INVENTARIO.md`, `kit/AUDIO.json` si existe y `proyecto.json`.
-Mira con Read las capturas que vas a usar. Estudia `_estudio/ejemplos/demo/` como modelo de cómo se escribe una escena.
+`E` = la carpeta del estudio (la línea `Estudio:` del encargo). Lee, en este orden: `$E/REGLAS.md`,
+`$E/docs/CONTRATO-ESCENA.md`, y del proyecto `LOOK.md`, `brief.md`, `guion.md` (tu escena), `kit/INVENTARIO.md`,
+`kit/AUDIO.json` si existe y `proyecto.json`. Mira con Read las capturas que vas a usar. Estudia `$E/ejemplos/demo/`
+como modelo de cómo se escribe una escena.
 
 ## Reglas que nunca te saltas
 
@@ -49,7 +50,7 @@ Mira con Read las capturas que vas a usar. Estudia `_estudio/ejemplos/demo/` com
 5. **Otros formatos:** fotos clave en cada formato de `proyecto.json` (`--formato 9:16 --fotos …`).
 6. **Autocrítica** con la rúbrica de REGLAS.md §6 (1–10). Arregla los 3 peores problemas y repite hasta 8+.
 
-`E = {{ESTUDIO}}` · ayuda: `node $E/tools/render.mjs --ayuda`.
+Ayuda de cada herramienta: `node $E/tools/render.mjs --ayuda`.
 
 ## Arreglos (informe del crítico o notas del usuario)
 

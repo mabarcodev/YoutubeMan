@@ -10,11 +10,12 @@ import { ESTUDIO, VIDEOS, esPrincipal, rutaURLModulo, slug } from '../../tools/l
 import { ESTUDIO as ESTUDIO_TESTS } from '../helpers/entorno.mjs';
 
 describe('ESTUDIO y VIDEOS', () => {
-  test('ESTUDIO es la raíz de _estudio y VIDEOS su carpeta padre', () => {
+  test('ESTUDIO es la raíz del estudio y VIDEOS su carpeta videos/', () => {
     assert.equal(ESTUDIO, ESTUDIO_TESTS);
     assert.ok(fs.existsSync(path.join(ESTUDIO, 'engine', 'motion.js')));
     assert.ok(fs.existsSync(path.join(ESTUDIO, 'tools', 'render.mjs')));
-    assert.equal(VIDEOS, path.dirname(ESTUDIO));
+    assert.equal(VIDEOS, path.join(ESTUDIO, 'videos'));
+    assert.ok(fs.existsSync(path.join(VIDEOS, 'README.md')), 'videos/ viene con su README');
   });
 });
 
