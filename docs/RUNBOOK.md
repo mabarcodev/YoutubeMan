@@ -36,10 +36,10 @@ Primero, siempre: `npm run doctor` (en la carpeta del estudio). Dice qué falta 
 
 ## Agentes
 
-| Síntoma                                   | Qué hacer                                                                                                                                                                                                                                                                     |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/youtubeman` no aparece                  | Abre tu IA **dentro** de la carpeta del estudio (no en la de arriba ni en una subcarpeta) y empieza una sesión nueva. Si instalaste la v0.2.0, borra `~/.claude/skills/youtubeman` y `~/.claude/agents/youtubeman-*.md`: esa copia antigua tiene prioridad sobre la del repo. |
-| Otra IA no sigue el proceso de youtubeman | Dile «lee AGENTS.md» al empezar. Si no tiene subagentes, hace ella misma las tareas del explorador, el animador y el crítico.                                                                                                                                                 |
+| Síntoma                                   | Qué hacer                                                                                                                     |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `/youtubeman` no aparece                  | Abre tu IA **dentro** de la carpeta del estudio (no en la de arriba ni en una subcarpeta) y empieza una sesión nueva.         |
+| Otra IA no sigue el proceso de youtubeman | Dile «lee AGENTS.md» al empezar. Si no tiene subagentes, hace ella misma las tareas del explorador, el animador y el crítico. |
 
 ## Volver atrás
 

@@ -39,7 +39,5 @@ tenía tres problemas:
 - Instalar y desinstalar es la carpeta: si se borra, no queda nada en la configuración de la IA.
 - Hay que abrir la IA **dentro** de la carpeta del estudio; el README, la guía, el RUNBOOK y el mensaje final de
   `npm run instalar` lo dicen.
-- **Cambio incompatible para quien instaló la v0.2.0:** debe borrar `~/.claude/skills/youtubeman` y
-  `~/.claude/agents/youtubeman-*.md`, porque en las skills la copia global tiene prioridad sobre la del repo.
 - Actualizar el estudio con `git pull` no toca los vídeos de `videos/` (están ignorados).
 - La instalación en un comando está probada en Windows; en macOS y Linux queda pendiente (ver `hand_off_claude.md`).

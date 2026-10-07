@@ -2,13 +2,13 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
+Las versiones 0.1.0 y 0.2.0 fueron internas: nunca se publicaron como release. La primera release publicada es la
+0.3.0.
+
 ## [0.3.0] · 2026-10-06
 
-Todo dentro de la carpeta del estudio: nada se instala en la configuración de tu IA. Ver ADR 0006.
-
-> ⚠️ **Cambio incompatible.** Abre tu IA **dentro** de la carpeta del estudio. Si instalaste la v0.2.0, borra
-> `~/.claude/skills/youtubeman` y `~/.claude/agents/youtubeman-*.md`: esa copia antigua tiene prioridad sobre la
-> del repo. Los vídeos nuevos se crean en `videos/`; los que ya tengas fuera siguen valiendo si das su ruta.
+**Primera versión publicada.** Todo dentro de la carpeta del estudio: nada se instala en la configuración de tu IA.
+Ver ADR 0006. Las secciones «Cambiado» y «Quitado» cuentan lo que cambió respecto a la 0.2.0 interna.
 
 ### Añadido
 
@@ -45,7 +45,7 @@ Todo dentro de la carpeta del estudio: nada se instala en la configuración de t
 
 ## [0.2.0] · 2026-10-05
 
-Primera versión pública.
+Versión interna, sin publicar como release.
 
 ### Añadido
 
@@ -67,7 +67,7 @@ Primera versión pública.
 
 ## [0.1.0] · 2026-10-05
 
-Primera versión del estudio de **youtubeman**.
+Primera versión del estudio de **youtubeman**, interna y sin publicar como release.
 
 ### Añadido
 
